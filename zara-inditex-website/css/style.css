@@ -1,0 +1,1997 @@
+/* ==========================================================================
+   ZARA & INDITEX — INTERNATIONAL BUSINESS CASE STUDY
+   Author: Vaishnavi Kapadi | PRN: 250102271008
+   Subject: Export & Import Documentation | Group: International Business
+   Design: Luxury Editorial Fashion & Academic Research Publication
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. CSS Reset & Variables
+   -------------------------------------------------------------------------- */
+:root {
+  /* Color Palette - Minimal Luxury & Zara Editorial */
+  --color-bg: #ffffff;
+  --color-bg-alt: #f8f8f9;
+  --color-bg-subtle: #f3f3f5;
+  --color-card-bg: #ffffff;
+  --color-text-primary: #0d0d0d;
+  --color-text-secondary: #4a4a4f;
+  --color-text-muted: #76767f;
+  --color-text-light: #9a9aa2;
+  
+  /* Brand Accents */
+  --color-accent-burgundy: #7c1a22;
+  --color-accent-crimson: #9e1d27;
+  --color-accent-soft: rgba(124, 26, 34, 0.08);
+  --color-accent-gold: #c5a059;
+  --color-tata-blue: #0f4c81;
+  --color-inditex-red: #7c1a22;
+  
+  /* Structural Borders */
+  --border-light: #e5e5ea;
+  --border-subtle: #eeeeef;
+  --border-dark: #1a1a1a;
+  
+  /* Typography */
+  --font-editorial: 'Playfair Display', 'Didot', 'Bodoni MT', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SFMono-Regular', Consolas, monospace;
+  
+  /* Transitions & Shadows */
+  --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-smooth: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-slow: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  --shadow-subtle: 0 2px 10px rgba(0, 0, 0, 0.04);
+  --shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.07);
+  --shadow-elevated: 0 20px 40px -15px rgba(0, 0, 0, 0.12);
+  
+  /* Layout Sizing */
+  --max-width: 1280px;
+  --max-width-narrow: 940px;
+  --header-height: 72px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-height) + 20px);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  line-height: 1.68;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Typography Defaults */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-editorial);
+  font-weight: 500;
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+  color: var(--color-text-primary);
+}
+
+p {
+  color: var(--color-text-secondary);
+  font-size: 1.05rem;
+  margin-bottom: 1.25rem;
+  font-weight: 400;
+}
+
+p.lead {
+  font-size: 1.22rem;
+  line-height: 1.7;
+  color: var(--color-text-primary);
+  font-weight: 400;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+ul, ol {
+  margin-bottom: 1.5rem;
+  padding-left: 1.5rem;
+  color: var(--color-text-secondary);
+}
+
+li {
+  margin-bottom: 0.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   2. Utility Classes & Layout Containers
+   -------------------------------------------------------------------------- */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.container-narrow {
+  width: 100%;
+  max-width: var(--max-width-narrow);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.section {
+  padding: 6.5rem 0;
+  position: relative;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.section-alt {
+  background-color: var(--color-bg-alt);
+}
+
+.section-header {
+  margin-bottom: 3.5rem;
+}
+
+.section-header.text-center {
+  text-align: center;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--color-accent-burgundy);
+  margin-bottom: 0.85rem;
+  position: relative;
+}
+
+.eyebrow::after {
+  content: '';
+  display: inline-block;
+  width: 24px;
+  height: 1px;
+  background-color: var(--color-accent-burgundy);
+  vertical-align: middle;
+  margin-left: 0.75rem;
+}
+
+.section-title {
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  margin-bottom: 1.25rem;
+}
+
+.section-description {
+  font-size: 1.15rem;
+  color: var(--color-text-secondary);
+  max-width: 720px;
+}
+
+.section-header.text-center .section-description {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.95rem 1.85rem;
+  border-radius: 0;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-decoration: none;
+}
+
+.btn-primary {
+  background-color: var(--color-text-primary);
+  color: #ffffff;
+  border-color: var(--color-text-primary);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-accent-burgundy);
+  border-color: var(--color-accent-burgundy);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(124, 26, 34, 0.25);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--color-text-primary);
+  border-color: var(--border-dark);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-text-primary);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.btn-sm {
+  padding: 0.6rem 1.15rem;
+  font-size: 0.78rem;
+}
+
+/* --------------------------------------------------------------------------
+   3. Header & Navigation
+   -------------------------------------------------------------------------- */
+.scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-accent-burgundy), var(--color-accent-crimson));
+  z-index: 1000;
+  transition: width 0.1s ease-out;
+}
+
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--header-height);
+  background-color: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border-light);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  transition: background-color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.site-header.scrolled {
+  box-shadow: var(--shadow-subtle);
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.brand-wrapper {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+
+.brand-title {
+  font-family: var(--font-editorial);
+  font-size: 1.55rem;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  text-transform: uppercase;
+}
+
+.brand-subtitle {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-accent-burgundy);
+  font-weight: 600;
+  border-left: 1px solid var(--border-light);
+  padding-left: 0.75rem;
+}
+
+.desktop-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+}
+
+.nav-link {
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  position: relative;
+  padding: 0.5rem 0;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background-color: var(--color-accent-burgundy);
+  transition: width var(--transition-fast);
+}
+
+.nav-link:hover, .nav-link.active {
+  color: var(--color-text-primary);
+}
+
+.nav-link:hover::after, .nav-link.active::after {
+  width: 100%;
+}
+
+.header-student-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--color-bg-alt);
+  padding: 0.4rem 0.85rem;
+  border: 1px solid var(--border-light);
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+}
+
+.header-student-badge strong {
+  color: var(--color-text-primary);
+}
+
+.header-student-badge .status-dot {
+  width: 7px;
+  height: 7px;
+  background-color: #10b981;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.mobile-menu-btn {
+  display: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  color: var(--color-text-primary);
+}
+
+/* Mobile Nav Drawer */
+.mobile-nav-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  z-index: 1001;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition-smooth), visibility var(--transition-smooth);
+}
+
+.mobile-nav-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobile-nav-drawer {
+  position: fixed;
+  top: 0;
+  right: -320px;
+  width: 300px;
+  height: 100%;
+  background-color: var(--color-bg);
+  z-index: 1002;
+  box-shadow: -5px 0 25px rgba(0, 0, 0, 0.1);
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: right var(--transition-smooth);
+}
+
+.mobile-nav-overlay.open .mobile-nav-drawer {
+  right: 0;
+}
+
+.mobile-nav-close {
+  align-self: flex-end;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--color-text-primary);
+}
+
+.mobile-nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-top: 2rem;
+  list-style: none;
+  padding: 0;
+}
+
+.mobile-nav-links a {
+  font-family: var(--font-editorial);
+  font-size: 1.35rem;
+  color: var(--color-text-primary);
+}
+
+/* --------------------------------------------------------------------------
+   4. Hero Section — Luxury Editorial Layout
+   -------------------------------------------------------------------------- */
+.hero-section {
+  min-height: 100vh;
+  padding-top: calc(var(--header-height) + 2rem);
+  padding-bottom: 4rem;
+  display: flex;
+  align-items: center;
+  position: relative;
+  background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
+  border-bottom: 1px solid var(--border-light);
+  overflow: hidden;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 3.5rem;
+  align-items: center;
+}
+
+.hero-editorial-meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.hero-tag {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-weight: 700;
+  background-color: var(--color-text-primary);
+  color: #ffffff;
+  padding: 0.35rem 0.8rem;
+}
+
+.hero-date {
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.hero-main-title {
+  font-size: clamp(3.2rem, 6.2vw, 5.6rem);
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.hero-main-title span.accent-italic {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--color-accent-burgundy);
+  font-family: 'Playfair Display', serif;
+}
+
+.hero-subtitle {
+  font-size: clamp(1.2rem, 2vw, 1.45rem);
+  font-family: var(--font-editorial);
+  color: var(--color-text-secondary);
+  font-weight: 400;
+  line-height: 1.45;
+  margin-bottom: 2rem;
+  max-width: 620px;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin-bottom: 2.75rem;
+}
+
+/* Student Information Card in Hero */
+.hero-student-card {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-left: 3px solid var(--color-accent-burgundy);
+  padding: 1.25rem 1.5rem;
+  box-shadow: var(--shadow-subtle);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 1rem;
+}
+
+.student-meta-item .meta-label {
+  display: block;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-text-muted);
+  margin-bottom: 0.25rem;
+  font-weight: 600;
+}
+
+.student-meta-item .meta-value {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+/* Hero Media / Visual */
+.hero-media-wrapper {
+  position: relative;
+}
+
+.hero-image-frame {
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-elevated);
+  background-color: var(--color-bg-subtle);
+  aspect-ratio: 4/5;
+}
+
+.hero-image-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.hero-image-frame:hover img {
+  transform: scale(1.03);
+}
+
+.hero-image-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.85) 100%);
+  color: #ffffff;
+  padding: 2.5rem 1.5rem 1.25rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+}
+
+.hero-image-caption span {
+  display: block;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  color: #ffcccc;
+}
+
+/* Key Metrics Ticker / Ribbon */
+.metrics-ribbon {
+  border-top: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
+  background-color: #ffffff;
+  padding: 2.2rem 0;
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1.5rem;
+  text-align: center;
+}
+
+.metric-item {
+  position: relative;
+  padding: 0 1rem;
+}
+
+.metric-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 15%;
+  height: 70%;
+  width: 1px;
+  background-color: var(--border-light);
+}
+
+.metric-value {
+  font-family: var(--font-editorial);
+  font-size: clamp(1.9rem, 2.5vw, 2.6rem);
+  font-weight: 600;
+  line-height: 1.1;
+  color: var(--color-text-primary);
+  margin-bottom: 0.35rem;
+}
+
+.metric-value.accent {
+  color: var(--color-accent-burgundy);
+}
+
+.metric-label {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-text-secondary);
+  font-weight: 600;
+}
+
+.metric-sub {
+  font-size: 0.72rem;
+  color: var(--color-text-muted);
+  margin-top: 0.2rem;
+}
+
+/* --------------------------------------------------------------------------
+   5. Introduction Section
+   -------------------------------------------------------------------------- */
+.intro-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.intro-pillars {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.pillar-card {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  padding: 1.85rem;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  position: relative;
+}
+
+.pillar-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-card);
+  border-color: var(--color-text-primary);
+}
+
+.pillar-icon-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.pillar-number {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--color-accent-burgundy);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.pillar-title {
+  font-size: 1.35rem;
+  margin-bottom: 0.75rem;
+}
+
+.pillar-card p {
+  font-size: 0.95rem;
+  margin-bottom: 0;
+  color: var(--color-text-secondary);
+}
+
+.quote-highlight {
+  border-left: 2px solid var(--color-accent-burgundy);
+  padding-left: 1.5rem;
+  margin: 2.5rem 0;
+  font-family: var(--font-editorial);
+  font-size: 1.35rem;
+  line-height: 1.5;
+  color: var(--color-text-primary);
+  font-style: italic;
+}
+
+/* --------------------------------------------------------------------------
+   6. Fast Fashion Operating Model (Section C)
+   -------------------------------------------------------------------------- */
+.model-comparison-box {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-card);
+  padding: 2.5rem;
+  margin-bottom: 3.5rem;
+}
+
+.comparison-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.comparison-header h3 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.comparison-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  position: relative;
+}
+
+.comparison-grid::after {
+  content: 'VS';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 44px;
+  height: 44px;
+  background-color: var(--color-text-primary);
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  letter-spacing: 0.1em;
+  z-index: 2;
+}
+
+.comparison-col {
+  padding: 1.75rem;
+  border: 1px solid var(--border-light);
+}
+
+.comparison-col.zara-model {
+  background-color: #fbf8f8;
+  border-color: rgba(124, 26, 34, 0.25);
+  position: relative;
+}
+
+.comparison-col.zara-model::before {
+  content: 'ZARA COMPETITIVE MOAT';
+  position: absolute;
+  top: -10px;
+  left: 20px;
+  background-color: var(--color-accent-burgundy);
+  color: #ffffff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  padding: 0.2rem 0.6rem;
+  text-transform: uppercase;
+}
+
+.comparison-col h4 {
+  font-size: 1.3rem;
+  margin-bottom: 1.25rem;
+}
+
+.comparison-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.comparison-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.92rem;
+  margin-bottom: 0.85rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px dashed var(--border-light);
+}
+
+.comparison-list li:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.check-icon {
+  color: #10b981;
+  font-weight: bold;
+}
+
+.cross-icon {
+  color: #ef4444;
+  font-weight: bold;
+}
+
+/* 4 Core Pillars of Fast Fashion */
+.four-pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.fast-fashion-card {
+  background-color: #ffffff;
+  border: 1px solid var(--border-light);
+  padding: 2rem 1.5rem;
+  transition: all var(--transition-smooth);
+  display: flex;
+  flex-direction: column;
+}
+
+.fast-fashion-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-card);
+  border-color: var(--color-accent-burgundy);
+}
+
+.card-num {
+  font-family: var(--font-editorial);
+  font-size: 2.2rem;
+  color: var(--color-accent-burgundy);
+  margin-bottom: 0.85rem;
+  font-weight: 500;
+}
+
+.fast-fashion-card h4 {
+  font-size: 1.25rem;
+  margin-bottom: 0.85rem;
+}
+
+.fast-fashion-card p {
+  font-size: 0.92rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 0;
+}
+
+/* --------------------------------------------------------------------------
+   7. Global Expansion & Interactive Timeline (Section D)
+   -------------------------------------------------------------------------- */
+.timeline-wrapper {
+  position: relative;
+  margin-top: 3rem;
+  margin-bottom: 3.5rem;
+}
+
+.timeline-filter-bar {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  padding: 0.5rem 1.25rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.filter-btn:hover, .filter-btn.active {
+  background-color: var(--color-text-primary);
+  color: #ffffff;
+  border-color: var(--color-text-primary);
+}
+
+.timeline-track {
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.timeline-track::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background-color: var(--border-light);
+  transform: translateX(-50%);
+}
+
+.timeline-node {
+  position: relative;
+  width: 50%;
+  padding: 1.5rem 2.5rem;
+  box-sizing: border-box;
+}
+
+.timeline-node:nth-child(odd) {
+  left: 0;
+  text-align: right;
+  padding-right: 3.5rem;
+}
+
+.timeline-node:nth-child(even) {
+  left: 50%;
+  text-align: left;
+  padding-left: 3.5rem;
+}
+
+.node-pin {
+  position: absolute;
+  top: 2rem;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  border: 3px solid var(--color-accent-burgundy);
+  z-index: 2;
+  transition: transform var(--transition-fast), background-color var(--transition-fast);
+}
+
+.timeline-node:nth-child(odd) .node-pin {
+  right: -8px;
+}
+
+.timeline-node:nth-child(even) .node-pin {
+  left: -8px;
+}
+
+.timeline-node:hover .node-pin {
+  transform: scale(1.4);
+  background-color: var(--color-accent-burgundy);
+}
+
+.timeline-card {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  padding: 1.75rem;
+  box-shadow: var(--shadow-subtle);
+  transition: all var(--transition-smooth);
+}
+
+.timeline-node:hover .timeline-card {
+  box-shadow: var(--shadow-card);
+  border-color: var(--color-text-primary);
+  transform: translateY(-2px);
+}
+
+.node-year {
+  font-family: var(--font-editorial);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-accent-burgundy);
+  margin-bottom: 0.35rem;
+}
+
+.node-market {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.node-desc {
+  font-size: 0.88rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 0;
+}
+
+.node-badge {
+  display: inline-block;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background-color: var(--color-bg-subtle);
+  padding: 0.2rem 0.55rem;
+  font-weight: 600;
+  margin-top: 0.75rem;
+  color: var(--color-text-secondary);
+}
+
+/* Global Portfolio Explorer */
+.brands-portfolio-section {
+  margin-top: 4rem;
+  padding-top: 3rem;
+  border-top: 1px solid var(--border-light);
+}
+
+.brands-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  margin-top: 2rem;
+}
+
+.brand-card {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  padding: 1.5rem;
+  text-align: center;
+  transition: all var(--transition-fast);
+}
+
+.brand-card:hover {
+  border-color: var(--color-text-primary);
+  transform: translateY(-2px);
+}
+
+.brand-card h5 {
+  font-family: var(--font-editorial);
+  font-size: 1.15rem;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.35rem;
+}
+
+.brand-card p {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  margin-bottom: 0;
+}
+
+/* --------------------------------------------------------------------------
+   8. India Entry Strategy (51:49 Joint Venture) (Section E)
+   -------------------------------------------------------------------------- */
+.jv-analysis-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3.5rem;
+  align-items: center;
+  margin-bottom: 4rem;
+}
+
+.jv-ownership-diagram {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  padding: 2.5rem;
+  box-shadow: var(--shadow-card);
+  text-align: center;
+}
+
+.jv-ratio-header {
+  font-family: var(--font-editorial);
+  font-size: 3.2rem;
+  color: var(--color-text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.jv-ratio-header span.ratio-inditex {
+  color: var(--color-inditex-red);
+}
+
+.jv-ratio-header span.ratio-trent {
+  color: var(--color-tata-blue);
+}
+
+.jv-ratio-sub {
+  font-size: 0.88rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-text-muted);
+  margin-bottom: 2rem;
+}
+
+/* Visual Ratio Bar */
+.ratio-bar-container {
+  height: 48px;
+  width: 100%;
+  background-color: #eee;
+  display: flex;
+  margin-bottom: 2rem;
+  overflow: hidden;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.ratio-bar-segment {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.88rem;
+  letter-spacing: 0.06em;
+  transition: width 1s ease-in-out;
+}
+
+.ratio-inditex-bar {
+  width: 51%;
+  background-color: var(--color-inditex-red);
+}
+
+.ratio-trent-bar {
+  width: 49%;
+  background-color: var(--color-tata-blue);
+}
+
+.partner-cards-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.partner-card {
+  padding: 1.5rem;
+  border: 1px solid var(--border-light);
+  text-align: left;
+}
+
+.partner-card.inditex {
+  border-top: 3px solid var(--color-inditex-red);
+}
+
+.partner-card.trent {
+  border-top: 3px solid var(--color-tata-blue);
+}
+
+.partner-card h4 {
+  font-size: 1.15rem;
+  margin-bottom: 0.5rem;
+}
+
+.partner-card p {
+  font-size: 0.84rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 0.75rem;
+}
+
+.partner-card ul {
+  padding-left: 1.1rem;
+  margin-bottom: 0;
+  font-size: 0.82rem;
+}
+
+/* FDI Regulations Card */
+.regulatory-deepdive {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-left: 4px solid var(--color-accent-gold);
+  padding: 2.2rem;
+  box-shadow: var(--shadow-subtle);
+}
+
+.regulatory-deepdive h4 {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.regulatory-badge {
+  font-size: 0.72rem;
+  background-color: rgba(197, 160, 89, 0.15);
+  color: #8b6e2d;
+  padding: 0.2rem 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* --------------------------------------------------------------------------
+   9. Financial Performance & Interactive Chart (Section F)
+   -------------------------------------------------------------------------- */
+.chart-section-wrapper {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  padding: 3rem 2.5rem;
+  box-shadow: var(--shadow-card);
+}
+
+.chart-controls-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.chart-metric-selector {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.chart-toggle-btn {
+  background: var(--color-bg-alt);
+  border: 1px solid var(--border-light);
+  padding: 0.55rem 1.15rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.chart-toggle-btn.active, .chart-toggle-btn:hover {
+  background-color: var(--color-text-primary);
+  color: #ffffff;
+  border-color: var(--color-text-primary);
+}
+
+.chart-canvas-container {
+  position: relative;
+  height: 420px;
+  width: 100%;
+}
+
+.financial-insights-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 3rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--border-light);
+}
+
+.insight-metric-box {
+  background-color: var(--color-bg-alt);
+  padding: 1.75rem;
+  border: 1px solid var(--border-light);
+}
+
+.insight-metric-box .metric-stat {
+  font-family: var(--font-editorial);
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: var(--color-accent-burgundy);
+  margin-bottom: 0.25rem;
+}
+
+.insight-metric-box .metric-heading {
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.insight-metric-box p {
+  font-size: 0.85rem;
+  margin-bottom: 0;
+  color: var(--color-text-secondary);
+}
+
+/* --------------------------------------------------------------------------
+   10. Ownership Evolution (Section G)
+   -------------------------------------------------------------------------- */
+.ownership-progression-timeline {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-bottom: 3.5rem;
+}
+
+.evolution-stage-card {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  padding: 2.2rem 1.75rem;
+  box-shadow: var(--shadow-subtle);
+  position: relative;
+  transition: all var(--transition-smooth);
+}
+
+.evolution-stage-card.highlight {
+  border-color: var(--color-accent-burgundy);
+  box-shadow: var(--shadow-card);
+}
+
+.stage-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.65rem;
+  background-color: var(--color-bg-subtle);
+  margin-bottom: 1rem;
+}
+
+.evolution-stage-card.highlight .stage-badge {
+  background-color: var(--color-accent-burgundy);
+  color: #ffffff;
+}
+
+.stage-year {
+  font-family: var(--font-editorial);
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.stage-ownership-visual {
+  margin: 1.5rem 0;
+}
+
+.stage-bar {
+  height: 28px;
+  display: flex;
+  background-color: #eee;
+  overflow: hidden;
+  margin-bottom: 0.75rem;
+}
+
+.stage-bar .inditex-part {
+  background-color: var(--color-inditex-red);
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stage-bar .trent-part {
+  background-color: var(--color-tata-blue);
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stage-legend {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  color: var(--color-text-secondary);
+}
+
+.stage-description {
+  font-size: 0.88rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 0;
+}
+
+.ownership-strategic-drivers {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  background-color: #ffffff;
+  border: 1px solid var(--border-light);
+  padding: 2.5rem;
+  box-shadow: var(--shadow-subtle);
+}
+
+.driver-col h4 {
+  font-size: 1.35rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.driver-col ul {
+  padding-left: 1.2rem;
+  margin-bottom: 0;
+}
+
+.driver-col li {
+  font-size: 0.92rem;
+  margin-bottom: 0.75rem;
+}
+
+/* --------------------------------------------------------------------------
+   11. The "Why Only 22 Stores" Enigma (Section H)
+   -------------------------------------------------------------------------- */
+.reasons-quadrant-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.reason-box {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  padding: 2.2rem;
+  transition: all var(--transition-fast);
+  position: relative;
+}
+
+.reason-box:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-card);
+  border-color: var(--color-text-primary);
+}
+
+.reason-index {
+  font-family: var(--font-editorial);
+  font-size: 1.8rem;
+  font-style: italic;
+  color: var(--color-accent-burgundy);
+  margin-bottom: 0.5rem;
+}
+
+.reason-box h4 {
+  font-size: 1.35rem;
+  margin-bottom: 0.85rem;
+}
+
+.reason-box p {
+  font-size: 0.94rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 0;
+}
+
+.trent-dual-strategy {
+  margin-top: 3rem;
+  background-color: var(--color-bg-subtle);
+  border: 1px solid var(--border-light);
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.trent-dual-strategy h4 {
+  font-size: 1.3rem;
+  margin-bottom: 0.75rem;
+}
+
+.trent-dual-strategy p {
+  font-size: 0.92rem;
+  margin-bottom: 0;
+}
+
+.dual-stats {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.dual-stat-card {
+  background: #ffffff;
+  padding: 1.25rem;
+  border: 1px solid var(--border-light);
+  text-align: center;
+  flex: 1;
+}
+
+.dual-stat-card .val {
+  font-family: var(--font-editorial);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.dual-stat-card .lbl {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  letter-spacing: 0.08em;
+}
+
+/* --------------------------------------------------------------------------
+   12. International Business Theories (Section I)
+   -------------------------------------------------------------------------- */
+.theories-tabs-container {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+.theories-tab-nav {
+  display: flex;
+  border-bottom: 1px solid var(--border-light);
+  background-color: var(--color-bg-alt);
+}
+
+.theory-tab-btn {
+  flex: 1;
+  padding: 1.25rem 2rem;
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+  color: var(--color-text-muted);
+  transition: all var(--transition-fast);
+}
+
+.theory-tab-btn.active {
+  background-color: #ffffff;
+  color: var(--color-text-primary);
+  border-bottom-color: var(--color-accent-burgundy);
+}
+
+.theory-tab-content {
+  display: none;
+  padding: 3rem 2.5rem;
+}
+
+.theory-tab-content.active {
+  display: block;
+}
+
+/* Internalization OLI Diagram */
+.oli-framework-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.oli-pillar {
+  border: 1px solid var(--border-light);
+  padding: 1.75rem;
+  background-color: var(--color-bg-alt);
+}
+
+.oli-letter {
+  font-family: var(--font-editorial);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-accent-burgundy);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.oli-pillar h4 {
+  font-size: 1.15rem;
+  margin-bottom: 0.75rem;
+}
+
+.oli-pillar p {
+  font-size: 0.88rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 0;
+}
+
+/* Uppsala Stepper */
+.uppsala-stepper {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  margin-top: 2rem;
+  position: relative;
+}
+
+.uppsala-step {
+  border: 1px solid var(--border-light);
+  padding: 1.5rem 1.25rem;
+  background: #ffffff;
+  position: relative;
+}
+
+.uppsala-step::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: var(--border-light);
+}
+
+.uppsala-step.active::before {
+  background-color: var(--color-accent-burgundy);
+}
+
+.step-num {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--color-accent-burgundy);
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.uppsala-step h4 {
+  font-size: 1.05rem;
+  margin-bottom: 0.5rem;
+}
+
+.uppsala-step p {
+  font-size: 0.82rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 0;
+}
+
+/* --------------------------------------------------------------------------
+   13. Technology & Future Growth (Section J)
+   -------------------------------------------------------------------------- */
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.tech-card {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  padding: 2.2rem 1.85rem;
+  transition: all var(--transition-smooth);
+}
+
+.tech-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card);
+  border-color: var(--color-accent-burgundy);
+}
+
+.tech-icon-badge {
+  width: 48px;
+  height: 48px;
+  background-color: var(--color-accent-soft);
+  color: var(--color-accent-burgundy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+}
+
+.tech-card h4 {
+  font-size: 1.3rem;
+  margin-bottom: 0.85rem;
+}
+
+.tech-card p {
+  font-size: 0.92rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 0;
+}
+
+/* --------------------------------------------------------------------------
+   14. Conclusion Section (Section K)
+   -------------------------------------------------------------------------- */
+.conclusion-box {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  padding: 3.5rem;
+  box-shadow: var(--shadow-card);
+}
+
+.conclusion-summary-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2.5rem 0;
+  font-size: 0.92rem;
+}
+
+.conclusion-summary-table th, 
+.conclusion-summary-table td {
+  padding: 1.1rem 1.25rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.conclusion-summary-table th {
+  background-color: var(--color-bg-alt);
+  font-family: var(--font-sans);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: var(--color-text-primary);
+}
+
+.conclusion-summary-table tr:hover td {
+  background-color: var(--color-bg-subtle);
+}
+
+/* --------------------------------------------------------------------------
+   15. References & Student Credits Section (Section L)
+   -------------------------------------------------------------------------- */
+.references-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 3.5rem;
+}
+
+.references-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.reference-item {
+  margin-bottom: 1.35rem;
+  padding-bottom: 1.35rem;
+  border-bottom: 1px solid var(--border-light);
+  font-size: 0.88rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+.reference-item strong {
+  color: var(--color-text-primary);
+}
+
+.student-credit-box {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-top: 4px solid var(--color-accent-burgundy);
+  padding: 2.5rem;
+  box-shadow: var(--shadow-subtle);
+}
+
+.student-credit-box h3 {
+  font-size: 1.6rem;
+  margin-bottom: 1.5rem;
+}
+
+.student-details-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+}
+
+.student-detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px dashed var(--border-light);
+}
+
+.student-detail-row .label {
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text-muted);
+  font-weight: 600;
+}
+
+.student-detail-row .value {
+  font-weight: 600;
+  color: var(--color-text-primary);
+  font-size: 0.98rem;
+}
+
+/* --------------------------------------------------------------------------
+   16. Footer & Back to Top
+   -------------------------------------------------------------------------- */
+.site-footer {
+  background-color: var(--color-text-primary);
+  color: #ffffff;
+  padding: 4rem 0 2.5rem;
+}
+
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 2rem;
+}
+
+.footer-brand {
+  font-family: var(--font-editorial);
+  font-size: 1.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.footer-academic-note {
+  font-size: 0.84rem;
+  color: rgba(255, 255, 255, 0.6);
+  max-width: 500px;
+  text-align: right;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.back-to-top-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 44px;
+  height: 44px;
+  background-color: var(--color-text-primary);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 990;
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--transition-fast);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+}
+
+.back-to-top-btn.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.back-to-top-btn:hover {
+  background-color: var(--color-accent-burgundy);
+  transform: translateY(-3px);
+}
+
+/* --------------------------------------------------------------------------
+   17. Responsive Media Queries
+   -------------------------------------------------------------------------- */
+@media (max-width: 1080px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  
+  .hero-image-frame {
+    aspect-ratio: 16/9;
+  }
+  
+  .intro-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .four-pillars-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .metrics-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .metrics-grid .metric-item:nth-child(3)::after {
+    display: none;
+  }
+  
+  .jv-analysis-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .ownership-progression-timeline {
+    grid-template-columns: 1fr;
+  }
+  
+  .reasons-quadrant-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .oli-framework-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .uppsala-stepper {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .tech-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .financial-insights-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .references-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .brands-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 820px) {
+  .desktop-nav, .header-student-badge {
+    display: none;
+  }
+  
+  .mobile-menu-btn {
+    display: block;
+  }
+  
+  .comparison-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .comparison-grid::after {
+    display: none;
+  }
+  
+  .metrics-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .metrics-grid .metric-item::after {
+    display: none;
+  }
+  
+  .timeline-track::before {
+    left: 20px;
+  }
+  
+  .timeline-node {
+    width: 100%;
+    left: 0 !important;
+    text-align: left !important;
+    padding-left: 50px !important;
+    padding-right: 1.5rem !important;
+  }
+  
+  .timeline-node .node-pin {
+    left: 12px !important;
+    right: auto !important;
+  }
+  
+  .theories-tab-nav {
+    flex-direction: column;
+  }
+  
+  .footer-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+  
+  .footer-academic-note {
+    text-align: left;
+  }
+  
+  .footer-bottom {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  
+  .trent-dual-strategy {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .metrics-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .uppsala-stepper {
+    grid-template-columns: 1fr;
+  }
+  
+  .partner-cards-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .hero-actions {
+    flex-direction: column;
+  }
+  
+  .hero-actions .btn {
+    width: 100%;
+  }
+  
+  .brands-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
